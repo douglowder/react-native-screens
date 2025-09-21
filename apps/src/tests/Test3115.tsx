@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { enableFreeze } from 'react-native-screens';
+import { enableFreeze, TabBarControllerMode } from 'react-native-screens';
 import ConfigWrapperContext, {
   type Configuration,
   DEFAULT_GLOBAL_CONFIGURATION,
@@ -11,6 +11,7 @@ import {
 } from '../shared/gamma/containers/bottom-tabs/BottomTabsContainer';
 import { CenteredLayoutView } from '../shared/CenteredLayoutView';
 import { Text } from 'react-native';
+import { Button } from '../shared';
 
 enableFreeze(true);
 
@@ -26,21 +27,26 @@ function makeTab(title: string) {
 
       return () => {
         clearInterval(interval);
-      }
+      };
     }, []);
 
     useEffect(() => {
       setCounter(c => c + 1);
     }, [tick]);
 
-    return (<CenteredLayoutView>
-      <Text>{title}</Text>
-      <Text style={{
-        color: tick ? 'white' : 'black',
-        backgroundColor: tick ? 'black' : 'white'
-      }}>Counter: {counter}</Text>
-    </CenteredLayoutView>)
-  }
+    return (
+      <CenteredLayoutView>
+        <Text>{title}</Text>
+        <Text
+          style={{
+            color: tick ? 'white' : 'black',
+            backgroundColor: tick ? 'black' : 'white',
+          }}>
+          Counter: {counter}
+        </Text>
+      </CenteredLayoutView>
+    );
+  };
 }
 
 const TAB_CONFIGS: TabConfiguration[] = [
@@ -74,13 +80,35 @@ function App() {
     DEFAULT_GLOBAL_CONFIGURATION,
   );
 
+  const [controllerMode, setControllerMode] =
+    useState<TabBarControllerMode>('automatic');
+
   return (
     <ConfigWrapperContext.Provider
       value={{
         config,
         setConfig,
       }}>
-      <BottomTabsContainer tabConfigs={TAB_CONFIGS} />
+      <Button
+        title={`Change mode (currently ${controllerMode})`}
+        onPress={() => {
+          switch (controllerMode) {
+            case 'automatic':
+              setControllerMode('tabBar');
+              break;
+            case 'tabBar':
+              setControllerMode('tabSidebar');
+              break;
+            default:
+              setControllerMode('automatic');
+              break;
+          }
+        }}
+      />
+      <BottomTabsContainer
+        tabConfigs={TAB_CONFIGS}
+        tabBarControllerMode={controllerMode}
+      />
     </ConfigWrapperContext.Provider>
   );
 }
