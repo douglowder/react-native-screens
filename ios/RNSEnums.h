@@ -138,6 +138,12 @@ typedef NS_ENUM(NSInteger, RNSTabBarMinimizeBehavior) {
 };
 #endif
 
+typedef NS_ENUM(NSInteger, RNSTabBarControllerMode) {
+  RNSTabBarControllerModeAutomatic,
+  RNSTabBarControllerModeTabBar,
+  RNSTabBarControllerModeTabSidebar,
+};
+
 // TODO: investigate objc - swift interop and deduplicate this code
 // This enum needs to be compatible with the RNSOrientationSwift enum.
 typedef NS_ENUM(NSInteger, RNSOrientation) {
