@@ -9,6 +9,8 @@
     "format": "prettier --write --list-different './src/**/*.{js,ts,tsx}'",
     "lint": "eslint --ext '.js,.ts,.tsx' --fix src && yarn check-types && yarn format",
     "check-types": "tsc --noEmit",
+    "clean-ios": "rm -rf ios/Pods ios/build",
+    "prepare-ios": "RCT_USE_RN_DEP=1 RCT_USE_PREBUILT_RNCORE=1 npx pod-install",
     "build-e2e-ios": "detox build --configuration ios.release",
     "build-e2e-android": "detox build --configuration android.release",
     "test-e2e-ios": "detox test --configuration ios.release --take-screenshots failing",
