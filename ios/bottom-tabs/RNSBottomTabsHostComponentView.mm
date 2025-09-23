@@ -445,9 +445,9 @@ RNS_IGNORE_SUPER_CALL_END
     }
 }
 
-#if RNS_IPHONE_OS_VERSION_AVAILABLE(18_0)
 - (void)setTabBarControllerModeFromRNSTabBarControllerMode:(RNSTabBarControllerMode)tabBarControllerMode
 {
+#if RNS_IPHONE_OS_VERSION_AVAILABLE(18_0)
   if (@available(iOS 18.0, *)) {
     _tabBarControllerMode = rnscreens::conversion::UITabBarControllerModeFromRNSTabBarControllerMode(tabBarControllerMode);
     _controller.mode = _tabBarControllerMode;

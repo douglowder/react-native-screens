@@ -194,12 +194,14 @@ export interface BottomTabsProps extends ViewProps {
    * 
    * The following values are currently supported:
    *
-   * - `automatic` - The system sets the display mode based on the tab’s content
-   * - `tabBar` - The system displays the content only as a tab bar
+   * - `automatic` - the system sets the display mode based on the tab’s content
+   * - `tabBar` - the system displays the content only as a tab bar
    * - `tabSidebar` - the tab bar is displayed as a sidebar
    *
    * See the official documentation for more details:
    * @see {@link https://developer.apple.com/documentation/uikit/uitabbarcontroller/mode|UITabBarController.Mode}
+   *
+   * @default Defaults to `automatic`.
    *
    * @platform ios
    * @supported iOS 18 or higher
