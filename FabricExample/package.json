@@ -8,8 +8,6 @@
     "lint": "eslint .",
     "start": "npx react-native start",
     "test": "jest",
-    "clean-ios": "rm -rf ios/Pods ios/build",
-    "prepare-ios": "RCT_USE_RN_DEP=1 RCT_USE_PREBUILT_RNCORE=1 npx pod-install",
     "build-e2e-ios": "detox build --configuration ios.release",
     "build-e2e-android": "detox build --configuration android.release",
     "test-e2e-ios": "detox test --configuration ios.release --take-screenshots failing",
