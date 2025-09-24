@@ -272,6 +272,13 @@ namespace react = facebook::react;
       _tabBarControllerMode = rnscreens::conversion::UITabBarControllerModeFromRNSBottomTabsTabBarControllerMode(
           newComponentProps.tabBarControllerMode);
       _controller.mode = _tabBarControllerMode;
+      if (_tabBarControllerMode == UITabBarControllerModeTabSidebar) {
+        // Also show the sidebar on iPad if the device is in landscape mode (default behavior)
+        UIDeviceOrientation current = [[UIDevice currentDevice] orientation];
+        if (UIDeviceOrientationIsLandscape(current) ) {
+          _controller.sidebar.hidden = false;
+        }
+      }
     } else
 #endif // Check for iOS >= 18
       if (newComponentProps.tabBarControllerMode != react::RNSBottomTabsTabBarControllerMode::Automatic) {
